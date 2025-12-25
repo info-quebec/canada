@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Chargement…</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #ffffff;
+      font-family: Arial, sans-serif;
+    }
+
+    #container {
+      text-align: center;
+    }
+
+    button {
+      padding: 15px 30px;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    /* le popup est caché au départ */
+    #popupContainer {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="container">
+    <p>Chargement du contenu…</p>
+    <button id="openBtn">Lire la suite</button>
+  </div>
+
+  <!-- ICI on intègre le popup -->
+  <div id="popupContainer">
+    <!-- on charge l'ancien popup sans redirection -->
+    <iframe 
+      src="popup.html"
+      style="width:100vw; height:100vh; border:none;">
+    </iframe>
+  </div>
+
+  <script>
+    document.getElementById("openBtn").addEventListener("click", function () {
+
+      // cacher la landing
+      document.getElementById("container").style.display = "none";
+
+      // afficher le popup
+      const popup = document.getElementById("popupContainer");
+      popup.style.display = "block";
+
+      // tenter le plein écran
+      if (popup.requestFullscreen) {
+        popup.requestFullscreen();
+      } else if (popup.webkitRequestFullscreen) {
+        popup.webkitRequestFullscreen();
+      } else if (popup.msRequestFullscreen) {
+        popup.msRequestFullscreen();
+      }
+    });
+  </script>
+
+</body>
+</html>
